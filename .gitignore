@@ -1,2 +1,3 @@
 compras/migrations
 .idea/
+compras/__pycache__/
