@@ -40,6 +40,8 @@ class Orden(models.Model):
 
     def get_total(self):
         items = ItemsOrden.objects.filter(orden = self)
+        #result = ItemsOrden.objects.filter(orden = self).aggregate(total = models.Sum('valor'))
+        #return result['total']
         return decimal.Decimal(reduce(lambda result, value: result + value,
                                       map(lambda v: decimal.Decimal(v.valor), items)))
 
