@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>REST DJANGO</title>
+</head>
+<body>
+    <div>
+        <form method="POST">
+            {%csrf_token%}
+            <div>
+                <label for="{{form.nombre.id_for_label}}">{{form.nombre.label}}</label>
+                <input type="text" id="{{form.nombre.id_for_label}}" name="{{form.nombre.html_name}}">
+                <ol>
+                {%for error in form.nombre.errors%}
+                    <li>
+                        <span>{{error|escape}}</span>
+                    </li>
+                {%endfor%}
+                </ol>
+            </div>
+            <div>
+                <label for="{{form.precio.id_for_label}}">{{form.precio.label}}</label>
+                <input type="number" id="{{form.precio.id_for_label}}" name="{{form.precio.html_name}}">
+                <ol>
+                {%for error in form.precio.errors%}
+                    <li>
+                        <span>{{error|escape}}</span>
+                    </li>
+                {%endfor%}
+                </ol>
+            </div>
+            <div>
+                <input type="submit" value="submit">
+            </div>
+        </form>
+    </div>
+    <div>
+        <ul>
+            {%for producto in productos%}
+                <li>{{producto.nombre}}</li>
+            {%endfor%}
+        </ul>
+    </div>
+</body>
+</html>

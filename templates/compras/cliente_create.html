@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>REST DJANGO</title>
+</head>
+<body>
+    <div>
+        <form method="POST">
+            {%csrf_token%}
+            <div>
+                <label for="{{form.email.id_for_label}}">{{form.email.label}}</label>
+                <input type="text" id="{{form.email.id_for_label}}" name="{{form.email.html_name}}">
+                <ol>
+                {%for error in form.email.errors%}
+                    <li>
+                        <span>{{error|escape}}</span>
+                    </li>
+                {%endfor%}
+                </ol>
+            </div>
+            <div>
+                <input type="submit" value="submit">
+            </div>
+        </form>
+    </div>
+    <div>
+        <ul>
+            {%for cliente in clientes%}
+                <li>{{cliente.email}}</li>
+            {%endfor%}
+        </ul>
+    </div>
+</body>
+</html>
