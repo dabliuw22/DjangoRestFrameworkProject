@@ -3,7 +3,6 @@
 En este proyecto se desarrollaran API's con Django Rest Framework, desde Serializadores básicos,
 hasta personalización de los Seralizadores. Se utilizara como gestor de bases de datos a MySQL,
 se requieren instalar las siguientes apps:
-
 ```
 pip install Django==1.11.7
 pip install djangorestframework==3.7.3
@@ -25,4 +24,8 @@ DATABASES = {
         'PORT': your_number_port
     }
 }
+```
+3. Correr la app en el servidor local:
+```
+python3 manage.py runserver
 ```
