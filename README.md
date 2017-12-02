@@ -22,6 +22,9 @@ pip3 install django-filter==1.1.0
 pip3 install mysqlclient==1.3.12
 ```
 4. Clonar el proyecto o descargarlo.
+```
+git clone https://github.com/dabliuw22/DjangoRestFrameworkProject.git
+```
 5. Agregar las credenciales en el archivo *settings.py* de la configuración de tu servidor de bases de datos:
 ```[python]
 DATABASES = {
