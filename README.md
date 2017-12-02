@@ -1,9 +1,10 @@
-# API's con Django Rest Framework
+# API's con Django Rest Framework e Implementación de Carrito de Compra
 
-En este proyecto se desarrollaran API's con Django Rest Framework, desde Serializadores básicos,
+En este proyecto se desarrollaran y consumiran API's con Django Rest Framework, desde Serializadores básicos,
 hasta personalización de los Seralizadores. Se utilizara el interprete de *python3*, por lo que
 debemos verificar si tenemos instalada la versión, ingresando en la terminal o consola de comandos.
 Se utilizara como gestor de bases de datos a MySQL.
+Además se brindara la implementación de un carro de compre mediante el uso de sessiones.
 
 Los pasos a tener en cuenta son los sigueintes:
 1. Crear un base de datos con el nombre **rest_db**.
