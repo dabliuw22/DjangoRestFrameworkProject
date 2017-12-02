@@ -31,7 +31,8 @@ urlpatterns = [
     url(r'^$', IndexView.as_view(), name = 'index'),
     url(r'^admin/', admin.site.urls),
     url(r'^', include('compras.urls', namespace = 'compras')),
-    url(r'^api/', include(router.urls))
+    url(r'^api/', include(router.urls)),
+    url(r'^carrito/', include('carrito.urls', namespace = 'carrito')),
 ]
 
 admin.site.site_header = 'REST DJANGO'

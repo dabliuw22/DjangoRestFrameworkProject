@@ -2,9 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>My Carrito</title>
 </head>
 <body>
-$END$
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Valor</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for item in carrito%}
+                    <tr>
+                        <td>{{item.producto.nombre}}</td>
+                        <td>
+                            <form method="post" action="{%url 'carrito:carrito_add' item.producto.id%}">
+                                {%csrf_token%}
+                                {{item.update_cantidad_form.cantidad}}
+                                {{item.update_cantidad_form.update_cantidad}}
+                                <input type="submit" value="Update">
+                            </form>
+                        </td>
+                        <td>{{item.precio}}</td>
+                        <td>{{item.valor}}</td>
+                        <td><a href="{%url 'carrito:carrito_remove' item.producto.id%}">DEL</a></td>
+                    </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

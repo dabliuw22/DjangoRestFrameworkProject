@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.http import require_GET
 from django.views.generic import CreateView, TemplateView
 from django.core.urlresolvers import reverse_lazy
 
@@ -9,6 +10,8 @@ from rest_framework import viewsets, filters
 from rest_framework.viewsets import ModelViewSet
 
 import requests
+
+from carrito.forms import CarritoForm
 
 from .models import Producto, Cliente, Orden, ItemsOrden
 from .forms import ProductoForm, ClienteForm, OrdenForm
@@ -24,6 +27,13 @@ class ProductoCreate(CreateView):
         context = super(ProductoCreate, self).get_context_data(**kwargs)
         context['productos'] = Producto.objects.all().order_by('nombre')
         return context
+
+@require_GET
+def producto_detail(request, producto_id):
+    producto = get_object_or_404(Producto, id = producto_id)
+    form = CarritoForm()
+    return render(request, 'compras/producto_detail.html',
+                  {'producto': producto, 'form': form})
 
 class ClienteCreate(CreateView):
     model = Cliente
@@ -129,3 +139,6 @@ def producto_consumer_add(request):
         form = ProductoForm()
     return render(request, 'compras/producto_create.html',
                   {'form': form, 'productos': Producto.objects.all().order_by('nombre')})
+
+def orden_consumer_add(request):
+    pass

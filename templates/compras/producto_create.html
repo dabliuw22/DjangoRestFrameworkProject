@@ -38,7 +38,7 @@
     <div>
         <ul>
             {%for producto in productos%}
-                <li>{{producto.nombre}}</li>
+                <li><a href="{%url 'compras:producto_detail' producto.id%}">{{producto.nombre}}</a></li>
             {%endfor%}
         </ul>
     </div>

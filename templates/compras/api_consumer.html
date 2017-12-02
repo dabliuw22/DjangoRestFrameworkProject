@@ -5,7 +5,12 @@
     <title>Orden Consumer</title>
 </head>
 <body>
-    {{json}}
+    <div>
+        {{json}}
+    </div>
+    <div>
+        <a href="{%url 'compras:api_add_producto'%}">Add Producto</a>
+        <a href="{%url 'compras:api_add_orden'%}">Add Orden</a>
+    </div>
 </body>
-    <a href="{%url 'compras:api_add_producto'%}">Add Producto</a>
 </html>

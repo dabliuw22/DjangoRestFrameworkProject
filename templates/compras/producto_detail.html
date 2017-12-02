@@ -2,9 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Detalle Producto</title>
 </head>
 <body>
-$END$
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Carrito</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.precio}}</td>
+                    <td>
+                        <div>
+                            <form method="post" action="{%url 'carrito:carrito_add' producto.id%}">
+                                {{form}}
+                                {%csrf_token%}
+                                <div>
+                                    <input type="submit" value="Add Carrito">
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
