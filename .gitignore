@@ -1,4 +1,6 @@
+carrito/migrations
 compras/migrations
-.idea/
+carrito/__pycache__/
 compras/__pycache__/
 RestProject/__pycache__/
+.idea/
