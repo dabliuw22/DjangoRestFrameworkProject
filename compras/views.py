@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView, TemplateView
 from django.core.urlresolvers import reverse_lazy
@@ -98,6 +99,24 @@ class ProductoConsumerView(TemplateView):
             for p in response_json.json():
                 print(p)
         return context
+
+class ProductoConsumerAdd(CreateView):
+    template_name = 'compras/producto_create.html'
+    model = Producto
+    form_class = ProductoForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['productos'] = Producto.objects.all().order_by('nombre')
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object
+        if self.form_class(request.POST).is_valid():
+            requests.post('http://localhost:8000/api/producto/',
+                          {'nombre': request.POST['nombre'], 'precio': request.POST['precio']})
+            return HttpResponseRedirect(reverse_lazy('compras:producto_consumer'))
+        return self.render_to_response(self.get_context_data(form = self.form_class(request.POST)))
 
 def producto_consumer_add(request):
     if request.method == 'POST':
