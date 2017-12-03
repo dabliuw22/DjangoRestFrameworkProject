@@ -68,11 +68,6 @@ class ProductoViewSet(ModelViewSet):
     search_fields = ('nombre','precio')
     ordering_fields = ('nombre','precio')
 
-    def create(self, request, *args, **kwargs):
-
-        return super().create(request, *args, **kwargs)
-
-
 class OrdenViewSet(ModelViewSet):
     queryset = Orden.objects.all()
     serializer_class = OrdenSerializer
@@ -86,8 +81,22 @@ class ItemOrdenViewSet(ModelViewSet):
 
 # ------ Consumer API's --------
 
+def cliente_consumer_add(request):
+    json = ''
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            requests.post('http://localhost:8000/api/cliente/', {'email': request.POST['email']})
+            return redirect('compras:cliente_consumer')
+    else:
+        form = ClienteForm()
+    response_json = requests.get('http://localhost:8000/api/cliente/')
+    if response_json.status_code == 200:
+        json = response_json.json()
+    return render(request, 'compras/cliente_create.html', {'form': form, 'clientes': json})
+
 class OrdenConsumerView(TemplateView):
-    template_name = 'compras/api_consumer.html'
+    template_name = 'compras/orden_consumer.html'
 
     def get_context_data(self, **kwargs):
         context = super(OrdenConsumerView, self).get_context_data(**kwargs)
@@ -99,7 +108,7 @@ class OrdenConsumerView(TemplateView):
         return context
 
 class ProductoConsumerView(TemplateView):
-    template_name = 'compras/api_consumer.html'
+    template_name = 'compras/producto_consumer.html'
 
     def get_context_data(self, **kwargs):
         context = super(ProductoConsumerView, self).get_context_data(**kwargs)

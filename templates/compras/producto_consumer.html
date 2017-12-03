@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Producto Consumer</title>
+</head>
+<body>
+    <div>
+        {{json}}
+    </div>
+    <div>
+        <h2>Lista Productos</h2>
+        <ul>
+            {%for producto in json%}
+                <li><a href="{%url 'compras:producto_detail' producto.id%}">{{producto.nombre}}</a></li>
+            {%endfor%}
+        </ul>
+    </div>
+    <div>
+        <a href="{%url 'compras:api_add_producto'%}">Add Producto</a>
+        <a href="{%url 'compras:api_add_orden'%}">Add Orden</a>
+    </div>
+</body>
+</html>
