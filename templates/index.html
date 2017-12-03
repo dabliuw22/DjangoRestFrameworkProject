@@ -7,6 +7,7 @@
 <body>
     <div>
         <a href="{%url 'carrito:carrito_detail'%}">Mi Carrito({{carrito|length}} items)</a>
+        <a>{{user.username}}</a>
     </div>
     <h1>Bienvenido a Django Rest App</h1>
     <a href="{%url 'compras:producto_create'%}">Agregar Producto</a>
